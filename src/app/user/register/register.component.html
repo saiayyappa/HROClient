@@ -1,0 +1,63 @@
+<app-header [invalidLogin]="true"></app-header>
+<section class="container">
+    <div class="row m-4">
+        <div class="col mt-2 d-flex align-items-center justify-content-around" style="height: 70vh;">
+            <div class="secondary-shadow bg-light p-4">
+                <h5 class="h2">New User Registration</h5>
+                <form class="pt-4" (ngSubmit)="onSubmit()">
+                    <div class="form-group row">
+                        <label for="username" class="col-3 col-form-label">Username</label>
+                        <div class="col-9">
+                            <input [(ngModel)]="username" type="text" class="form-control" name="username" id="username"
+                                placeholder="Enter username">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="password" class="col-3 col-form-label">Password</label>
+                        <div class="col-9">
+                            <input [(ngModel)]="password" type="text" class="form-control" name="password" id="password"
+                                placeholder="Enter password">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+
+                        <div class="col-9 offset-3">
+                            <input [(ngModel)]="rPassword" type="text" class="form-control" name="rPassword"
+                                id="rPassword" placeholder="Enter password again">
+                            <small *ngIf="password!==rPassword" class="text-danger">Passwords do not match</small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="email" class="col-3 col-form-label">Email</label>
+                        <div class="col-9">
+                            <input [(ngModel)]="email" type="email" class="form-control " name="email" id="email"
+                                placeholder="Enter email">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="role" class="col-3 col-form-label">Role</label>
+                        <div class="col-9">
+                            <div class="form-check">
+                                <input [(ngModel)]="role" class="form-check-input" type="radio" name="role" id="inlineRadio1"
+                                    value="role_admin">
+                                <label class="form-check-label" for="role">Admin</label>
+                            </div>
+                            <div class="form-check">
+                                <input  [(ngModel)]="role" class="form-check-input" type="radio" name="role" id="inlineRadio2"
+                                    value="role_member">
+                                <label class="form-check-label" for="role">Member</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-3"></div>
+                        <div class="col-9">
+                            <button type="submit" class="btn btn-dark"
+                                [class.disabled]="password!==rPassword">Register</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,13 @@
+<header class="primary-shadow">
+    <nav class="navbar navbar-expand-lg d-lg-flex flex-lg-row justify-content-lg-between container" >
+        <a class="navbar-brand" href="#">
+            <h1 class="text-dark">Home Remedy Portal</h1>
+        </a>
+        <div>
+            <button routerLink="/users" *ngIf="!invalidLogin" [disabled]="!roleCheck" class="btn btn-outline-dark">Users</button>
+            <a routerLink="/remedy" *ngIf="!invalidLogin" role="button" class="btn btn-outline-dark ml-2">Remedy</a>
+            <a routerLink="/cart" *ngIf="!invalidLogin" role="button" class="btn btn-outline-dark ml-2">Cart</a>
+            <a *ngIf="!invalidLogin" role="button" class="btn btn-outline-dark ml-2" (click) = "logout()">Logout</a>
+        </div>
+    </nav>
+</header>
