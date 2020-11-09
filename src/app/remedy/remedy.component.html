@@ -8,7 +8,8 @@
                         <p class="card-text d-flex flex-column">
                             <button [disabled]="!roleCheck" (click)="showRemedyForm=true"
                                 class="btn btn-dark m-1 form-control">Create/Update Remedy</button>
-                            <button (click)="listAllRemedy()" class="btn btn-dark m-1 form-control">List All
+                            <button (click)="listAllRemedy(); showRemedyForm=false"
+                                class="btn btn-dark m-1 form-control">List All
                                 Remedy</button>
                         </p>
                     </div>
@@ -37,7 +38,7 @@
                                 <h6 class="card-subtitle mb-2">{{remedy.curesDisease | titlecase}}</h6>
                                 <p class="card-text">{{remedy.description}}</p>
                                 <p class="card-text badge badge-dark">${{remedy.cost}}</p>
-                                <button (click)="listAllRemedy()" class="btn btn-dark m-1 form-control">Add to
+                                <button (click)="addToCart(remedy)" class="btn btn-dark m-1 form-control">Add to
                                     Cart</button>
                             </div>
                         </div>
@@ -55,8 +56,8 @@
                         <div class="form-group row">
                             <label for="curesDisease" class="col-3 col-form-label">Cure For</label>
                             <div class="col-9">
-                                <input [(ngModel)]="curesDisease" type="text" class="form-control" name="curesDisease" id="curesDisease"
-                                    placeholder="Enter the disease which will be cured">
+                                <input [(ngModel)]="curesDisease" type="text" class="form-control" name="curesDisease"
+                                    id="curesDisease" placeholder="Enter the disease which will be cured">
                             </div>
                         </div>
                         <div class="form-group row">

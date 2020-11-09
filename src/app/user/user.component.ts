@@ -24,10 +24,16 @@ export class UserComponent implements OnInit {
   email: String;
 
   updateUserId: number;
-  
+
   constructor(private router: Router, private loginService: UserService, private remedyService: RemedyService) {}
 
   ngOnInit(): void {
+    this.invalidLogin = JSON.parse(localStorage.getItem("invalidLogin"));
+    if(this.invalidLogin) {
+      this.router.navigate(['sign-in']);
+      alert('Login again!!!');
+    }
+
     this.userId = parseInt(localStorage.getItem('userId'));
     this.loginService.getUserById(this.userId).subscribe(res => {
       console.log(res);
@@ -41,15 +47,19 @@ export class UserComponent implements OnInit {
     this.listAllUsers();
   }
 
-  listAllUsers(){
+  listAllUsers() {
     this.loginService.getUsers().subscribe(res => {
-      this.users = res;
+      res.map(user => {
+        if (user.role == 'role_member' || user.id == this.userId) {
+          this.users.push(user);
+        }
+      })
       this.showUserForm = false;
       console.log(this.users);
     })
   }
 
-  updateUser(user: User){
+  updateUser(user: User) {
     this.updateUserId = user.id;
     this.name = user.name;
     this.email = user.email;

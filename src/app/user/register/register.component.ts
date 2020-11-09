@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
   role: String;
 
   onSubmit() {
-    let user = new User(this.username, this.email, this.password, this.role);
+    let user = new User(this.username, this.email, this.role, this.password);
     this.loginService.upsertUser(user, 0).subscribe(res => {
       console.log(res);
       this.router.navigate(['sign-in']);

@@ -13,7 +13,7 @@ export class CartService {
   baseUrl = 'http://localhost:8082';
 
   processTransaction(cart: Cart, userId: number): Observable<any> {
-    return this.http.post(`${this.baseUrl}/remedy?id=${userId}`, cart);
+    return this.http.post(`${this.baseUrl}/cart?id=${userId}`, cart, {responseType: 'text'});
   }
 
   getTransactionByUser(userId: number): Observable<any> {

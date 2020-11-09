@@ -14,6 +14,16 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router, private loginService: UserService) {}
 
   ngOnInit(): void {
+    this.userId = parseInt(localStorage.getItem('userId'));
+    this.loginService.getUserById(this.userId).subscribe(res => {
+      console.log(res);
+      if (res.role == 'role_admin') {
+        this.roleCheck = true;
+      } else {
+        this.roleCheck = false;
+      }
+      console.log(this.roleCheck)
+    });
   }
 
   @Input()
@@ -23,5 +33,7 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem("userId");
     this.router.navigate(['sign-in']);
     this.invalidLogin = true;
+    localStorage.setItem("invalidLogin", "true");
+    localStorage.removeItem("cart");
   }
 }

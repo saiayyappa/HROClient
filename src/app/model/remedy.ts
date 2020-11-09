@@ -1,8 +1,8 @@
 export class Remedy {
     id: number
-    name: number;
-    curesDisease: String;
-    description: String;
+    name: string;
+    curesDisease: string;
+    description: string;
     cost: number;
 
     constructor(name, curesDisease, description, cost) {

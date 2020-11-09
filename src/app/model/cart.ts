@@ -1,9 +1,9 @@
 export class Cart {
     id: number
     purchasedBy: number;
-    items: String;
-    quantities: String;
-    totalCost: String;
+    items: string;
+    quantities: string;
+    totalCost: string;
 
     constructor(purchasedBy, items, quantities, totalCost) {
         this.purchasedBy = purchasedBy;

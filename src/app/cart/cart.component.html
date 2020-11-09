@@ -6,8 +6,11 @@
                 <div class="card text-center secondary-shadow mt-2">
                     <div class="card-body">
                         <p class="card-text d-flex flex-column">
-                            <button (click)="listAllTransactions()" class="btn btn-dark m-1 form-control">My
+                            <button (click)="listAllTransactions(); showCart=false"
+                                class="btn btn-dark m-1 form-control">My
                                 transactions</button>
+                            <button (click)="viewCart(); showCart=true" class="btn btn-dark m-1 form-control">View
+                                Cart</button>
                         </p>
                     </div>
                 </div>
@@ -20,20 +23,37 @@
                         <h5 class="h2">Cart</h5>
                     </div>
                 </div>
-                <div *ngIf="carts.length>0">
+                <div *ngIf="carts.length>0 && !showCart">
                     <div *ngFor="let cart of carts">
+                        <div class="card p-2 m-4">
+                            <div class="card-body">
+                                <h5 class="card-title">Transaction id: {{cart.id}}</h5>
+                                <h6 class="card-subtitle mb-2">Items: {{cart.items}}</h6>
+                                <p class="card-text">Quantity: {{cart.quantities}}</p>
+                                <p class="card-text badge badge-dark">${{cart.totalCost}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="showCart">
+                    <div *ngIf="!emptyCart">
                         <div class="card p-2 m-4">
                             <div class="card-body">
                                 <h5 class="card-title">{{cart.id}}</h5>
                                 <h6 class="card-subtitle mb-2">{{cart.items}}</h6>
                                 <p class="card-text">{{cart.quantities}}</p>
                                 <p class="card-text badge badge-dark">${{cart.totalCost}}</p>
+                                <button [disabled]=emptyCart (click)="buy()" class="btn btn-dark m-1 form-control">Buy
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div *ngIf="carts.length==0">
+                <div *ngIf="carts.length==0 && !showCart">
                     <p class="mt-4 text-center"> No transaction</p>
+                </div>
+                <div *ngIf="emptyCart && showCart">
+                    <p class="mt-4 text-center"> Cart is empty</p>
                 </div>
             </div>
         </div>
